@@ -1,9 +1,37 @@
 version: 2
 updates:
   - package-ecosystem: "terraform"
-    directory: "/terraform"
+    directory: "/terraform/random"
     schedule:
       interval: "daily"
-      time: "01:15"
+      time: "02:25"
       timezone: "America/New_York"
-    open-pull-requests-limit: 3
+    pull-request-branch-name:
+      separator: "-"
+    labels:
+      - "terraform"
+      - "automated-version-update"
+
+  - package-ecosystem: "terraform"
+    directory: "/terraform/time"
+    schedule:
+      interval: "daily"
+      time: "02:25"
+      timezone: "America/New_York"
+    pull-request-branch-name:
+      separator: "-"
+    labels:
+      - "terraform"
+      - "automated-version-update"
+
+  - package-ecosystem: "github-actions"
+    # Workflow files stored in the default location of `.github/workflows`. (You don't need to specify `/.github/workflows` for `directory`. You can use `directory: "/"`.)
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "02:25"
+      timezone: "America/New_York"
+    pull-request-branch-name:
+      separator: "-"
+    labels:
+      - "automated-version-update"

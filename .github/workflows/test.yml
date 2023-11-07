@@ -1,15 +1,15 @@
 name: test
 
 on:
-  push:
-    branches: [main]
+  pull_request:
+    branches: [main, '!dependabot*']
     paths:
     - '.github/workflows/test.yml'
     - 'terraform/**'
 
 jobs:
-  terraform:
-    name:    Terraform
+  terraform-random:
+    name:    Terraform Random
     runs-on: ubuntu-latest
 
     steps:
@@ -20,10 +20,30 @@ jobs:
         uses: hashicorp/setup-terraform@v2.0.0
 
       - name: Terraform Init
-        run:  terraform -chdir=terraform init -input=false -upgrade
+        run:  terraform -chdir=terraform/random init -input=false -upgrade
 
       - name: Terraform Plan
-        run:  terraform -chdir=terraform plan -input=false -out=tfplan
+        run:  terraform -chdir=terraform/random plan -input=false -out=tfplan
 
       - name: Terraform Apply
-        run:  terraform -chdir=terraform apply -parallelism=50 -auto-approve tfplan
+        run:  terraform -chdir=terraform/random apply -parallelism=50 -auto-approve tfplan
+
+  terraform-time:
+    name:    Terraform Time
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v3.0.0
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2.0.0
+
+      - name: Terraform Init
+        run:  terraform -chdir=terraform/time init -input=false -upgrade
+
+      - name: Terraform Plan
+        run:  terraform -chdir=terraform/time plan -input=false -out=tfplan
+
+      - name: Terraform Apply
+        run:  terraform -chdir=terraform/time apply -parallelism=50 -auto-approve tfplan
