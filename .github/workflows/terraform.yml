@@ -1,4 +1,4 @@
-name: plan
+name: terraform
 
 on:
   pull_request:
@@ -33,3 +33,7 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan -input=false -out=tfplan
+
+      - name: Terraform Apply
+        if: github.actor != 'dependabot[bot]'
+        run: terraform apply -parallelism=50 -auto-approve tfplan
