@@ -1,7 +1,19 @@
 version: 2
 updates:
   - package-ecosystem: "terraform"
-    directory: "/terraform"
+    directory: "/terraform/random"
+    schedule:
+      interval: "daily"
+      time: "01:45"
+      timezone: "America/New_York"
+    pull-request-branch-name:
+      separator: "-"
+    labels:
+      - "terraform"
+      - "automated-version-update"
+
+  - package-ecosystem: "terraform"
+    directory: "/terraform/time"
     schedule:
       interval: "daily"
       time: "01:45"
