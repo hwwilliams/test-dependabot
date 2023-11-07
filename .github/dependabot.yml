@@ -4,7 +4,7 @@ updates:
     directory: "/terraform/random"
     schedule:
       interval: "daily"
-      time: "02:00"
+      time: "03:15"
       timezone: "America/New_York"
     target-branch: "automated-version-update"
     pull-request-branch-name:
@@ -17,7 +17,7 @@ updates:
     directory: "/terraform/time"
     schedule:
       interval: "daily"
-      time: "02:00"
+      time: "03:15"
       timezone: "America/New_York"
     target-branch: "automated-version-update"
     pull-request-branch-name:
@@ -31,7 +31,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "02:00"
+      time: "03:15"
       timezone: "America/New_York"
     target-branch: "automated-version-update"
     pull-request-branch-name:
