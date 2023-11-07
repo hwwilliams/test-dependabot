@@ -32,9 +32,4 @@ jobs:
         run: terraform init -input=false -upgrade
 
       - name: Terraform Plan
-        id: plan
-        run: |
-          echo 'plan<<EOF' >> $GITHUB_OUTPUT
-          terraform plan -input=false -out=tfplan >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
-#
+        run: terraform plan -input=false -out=tfplan
