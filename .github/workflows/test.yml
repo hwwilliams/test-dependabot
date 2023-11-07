@@ -1,0 +1,29 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+    paths:
+    - '.github/workflows/test.yml'
+    - 'terraform/**'
+
+jobs:
+  terraform:
+    name:    Terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v3.0.0
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@2.0.0
+
+      - name: Terraform Init
+        run:  terraform -chdir=terraform init -input=false -upgrade
+
+      - name: Terraform Plan
+        run:  terraform -chdir=terraform plan -input=false -out=tfplan
+
+      - name: Terraform Apply
+        run:  terraform -chdir=terraform apply -parallelism=50 -auto-approve tfplan
