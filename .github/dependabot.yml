@@ -4,7 +4,7 @@ updates:
     directory: "/terraform/random"
     schedule:
       interval: "daily"
-      time: "02:25"
+      time: "02:55"
       timezone: "America/New_York"
     pull-request-branch-name:
       separator: "-"
@@ -16,7 +16,7 @@ updates:
     directory: "/terraform/time"
     schedule:
       interval: "daily"
-      time: "02:25"
+      time: "02:55"
       timezone: "America/New_York"
     pull-request-branch-name:
       separator: "-"
@@ -29,7 +29,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "02:25"
+      time: "02:55"
       timezone: "America/New_York"
     pull-request-branch-name:
       separator: "-"
