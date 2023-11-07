@@ -1,10 +1,10 @@
 name: terraform
 
 on:
-  pull_request:
+  push:
     branches: [main]
     paths:
-      - '.github/workflows/plan.yml'
+      - '.github/workflows/terraform.yml'
       - 'terraform/**'
 
 jobs:
