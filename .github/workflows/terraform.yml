@@ -1,10 +1,10 @@
-name: plan
+name: terraform
 
 on:
-  pull_request:
+  push:
     branches: [main]
     paths:
-      - '.github/workflows/plan.yml'
+      - '.github/workflows/terraform.yml'
       - 'terraform/**'
 
 jobs:
@@ -32,8 +32,8 @@ jobs:
         run: terraform init -input=false -upgrade
 
       - name: Terraform Plan
-        id: plan
-        run: |
-          echo 'plan<<EOF' >> $GITHUB_OUTPUT
-          terraform plan -input=false -out=tfplan >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
+        run: terraform plan -input=false -out=tfplan
+
+      - name: Terraform Apply
+        if: github.actor != 'dependabot[bot]'
+        run: terraform apply -parallelism=50 -auto-approve tfplan
