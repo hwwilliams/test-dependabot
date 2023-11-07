@@ -8,6 +8,9 @@ updates:
       timezone: "America/New_York"
     pull-request-branch-name:
       separator: "-"
+    labels:
+      - "terraform"
+      - "automated-version-update"
 
   - package-ecosystem: "github-actions"
     # Workflow files stored in the default location of `.github/workflows`. (You don't need to specify `/.github/workflows` for `directory`. You can use `directory: "/"`.)
@@ -18,3 +21,5 @@ updates:
       timezone: "America/New_York"
     pull-request-branch-name:
       separator: "-"
+    labels:
+      - "automated-version-update"
