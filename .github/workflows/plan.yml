@@ -1,0 +1,39 @@
+name: plan
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/plan.yml'
+      - 'terraform/**'
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        working_directory: [terraform/random, terraform/time]
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ matrix.working_directory }}
+
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v4.1.1
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3.0.0
+
+      - name: Terraform Init
+        run: terraform init -input=false -upgrade
+
+      - name: Terraform Plan
+        id: plan
+        run: |
+          echo 'plan<<EOF' >> $GITHUB_OUTPUT
+          terraform plan -input=false -out=tfplan >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
