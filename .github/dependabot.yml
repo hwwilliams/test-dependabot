@@ -6,6 +6,7 @@ updates:
       interval: "daily"
       time: "02:00"
       timezone: "America/New_York"
+    target-branch: "automated-version-update"
     pull-request-branch-name:
       separator: "-"
     labels:
@@ -18,6 +19,7 @@ updates:
       interval: "daily"
       time: "02:00"
       timezone: "America/New_York"
+    target-branch: "automated-version-update"
     pull-request-branch-name:
       separator: "-"
     labels:
@@ -31,6 +33,7 @@ updates:
       interval: "daily"
       time: "02:00"
       timezone: "America/New_York"
+    target-branch: "automated-version-update"
     pull-request-branch-name:
       separator: "-"
     labels:
