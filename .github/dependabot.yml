@@ -6,4 +6,15 @@ updates:
       interval: "daily"
       time: "01:15"
       timezone: "America/New_York"
-    open-pull-requests-limit: 3
+    pull-request-branch-name:
+      separator: "-"
+
+  - package-ecosystem: "github-actions"
+    # Workflow files stored in the default location of `.github/workflows`. (You don't need to specify `/.github/workflows` for `directory`. You can use `directory: "/"`.)
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "01:15"
+      timezone: "America/New_York"
+    pull-request-branch-name:
+      separator: "-"
