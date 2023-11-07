@@ -3,6 +3,7 @@ name: test
 on:
   pull_request:
     branches: [main]
+    branches-ignore: ['dependabot*']
     paths:
     - '.github/workflows/test.yml'
     - 'terraform/**'
@@ -26,7 +27,6 @@ jobs:
         run:  terraform -chdir=terraform/random plan -input=false -out=tfplan
 
       - name: Terraform Apply
-        if:   github.user != 'dependabot'
         run:  terraform -chdir=terraform/random apply -parallelism=50 -auto-approve tfplan
 
   terraform-time:
@@ -47,5 +47,4 @@ jobs:
         run:  terraform -chdir=terraform/time plan -input=false -out=tfplan
 
       - name: Terraform Apply
-        if:   github.user != 'dependabot'
         run:  terraform -chdir=terraform/time apply -parallelism=50 -auto-approve tfplan
